@@ -82,9 +82,11 @@
 #import "ORKSpeechInNoiseStep.h"
 #import "ORKdBHLToneAudiometryStep.h"
 #import "ORKdBHLToneAudiometryOnboardingStep.h"
+#import "ORKTinnitusStep.h"
 
 
 #import "ORKSkin.h"
+#import "UIImage+ResearchKit.h"
 #import <ResearchKit/ResearchKit-Swift.h>
 #import "ORKTouchAbilityTapStep.h"
 #import "ORKTouchAbilityLongPressStep.h"
@@ -140,6 +142,15 @@ NSString *const ORKPedometerRecorderIdentifier = @"pedometer";
 NSString *const ORKDeviceMotionRecorderIdentifier = @"deviceMotion";
 NSString *const ORKLocationRecorderIdentifier = @"location";
 NSString *const ORKHeartRateRecorderIdentifier = @"heartRate";
+
+NSString *const ORKTinnitusTypeIdentifier = @"tinnitus.type";
+NSString *const ORKTinnitusEarIdentifier = @"tinnitus.ear";
+NSString *const ORKTinnitusComfortableVolumeIdentifier = @"tinnitus.comfortableVolume";
+NSString *const ORKTinnitusEstimatedVolumeBorg100Identifier = @"tinnitus.estimatedVolumeBorg100";
+NSString *const ORKTinnitusLoudnessMatchingIdentifier = @"tinnitus.loudnessMatching";
+NSString *const ORKTinnitusFrequencyMatchingIdentifier = @"tinnitus.frequencyMatching";
+NSString *const ORKTinnitusMinimumMaskingLevelIdentifier = @"tinnitus.minimumMaskingLevel";
+
 
 void ORKStepArrayAddStep(NSMutableArray *array, ORKStep *step) {
     [step validateParameters];
@@ -3306,6 +3317,93 @@ NSString *const ORKTouchAbilityHorizontalScrollStepIdentifier = @"touchAbilityHo
     
     ORKOrderedTask *task = [[ORKOrderedTask alloc] initWithIdentifier:identifier steps:steps];
     
+    return task;
+}
+
+#pragma mark - tinnitus
+
++ (ORKOrderedTask *)tinnitusTaskWithIdentifier:(NSString *)identifier options:(ORKPredefinedTaskOption)options {
+    if (options & ORKPredefinedTaskOptionExcludeAudio) {
+        @throw [NSException exceptionWithName:NSGenericException reason:@"Audio collection cannot be excluded from audio task" userInfo:nil];
+    }
+
+    NSMutableArray<__kindof ORKStep *> *steps = [NSMutableArray array];
+    
+    // TODO: Build real instructionms
+//    if (!(options & ORKPredefinedTaskOptionExcludeInstructions)) {
+//        {
+//            ORKInstructionStep *step = [[ORKInstructionStep alloc] initWithIdentifier:ORKInstruction0StepIdentifier];
+////            step.title = ORKLocalizedString(@"TOUCH_ABILITY_INSTRUCTION_TITLE", nil);
+////            step.text = intendedUseDescription;
+////            step.detailText = ORKLocalizedString(@"TOUCH_ABILITY_INSTRUCTION_DETAIL", nil);
+////            step.image = [UIImage imageNamed:@"touchAbilityInstruction" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+////            step.shouldTintImages = YES;
+//
+//            step.title = @"";
+//
+//            ORKStepArrayAddStep(steps, step);
+//        }
+//    }
+//    
+//    {
+//        UIImage* playImage = [[UIImage systemImageNamed: @"play.circle"] ork_imageWithScale: 4.0];
+//
+//        id choice1 = [[ORKImageChoice alloc] initWithNormalImage: playImage selectedImage: playImage text: @"Tonal" value: @"tonal"];
+//        id choice2 = [[ORKImageChoice alloc] initWithNormalImage: playImage selectedImage: playImage text: @"Hissing" value: @"hissing"];
+//        id choice3 = [[ORKImageChoice alloc] initWithNormalImage: playImage selectedImage: playImage text: @"Noise" value: @"noise"];
+//
+//        NSArray<ORKImageChoice*>* choices = @[ choice1, choice2, choice3 ];
+//
+//        ORKImageChoiceAnswerFormat *answerFormat = [[ORKImageChoiceAnswerFormat alloc] initWithImageChoices:choices];
+//        ORKQuestionStep *step = [ORKQuestionStep questionStepWithIdentifier:ORKTinnitusTypeIdentifier title: @"Select Tinnitus Type" question: @"Click each button to preview the sound" answer: answerFormat];
+//        ORKStepArrayAddStep(steps, step);
+//    }
+//
+//    {
+//        id answerFormat = [[ORKScaleAnswerFormat alloc] initWithMaximumValue:10 minimumValue:1 defaultValue:5 step:1];
+//        ORKQuestionStep *step = [ORKQuestionStep questionStepWithIdentifier:ORKTinnitusComfortableVolumeIdentifier title: @"Roughly match your tinnitus volume" question: @"" answer: answerFormat];
+//        ORKStepArrayAddStep(steps, step);
+//    }
+//
+    {
+        ORKCountdownStep *step = [[ORKCountdownStep alloc] initWithIdentifier:ORKCountdownStepIdentifier];
+        step.title = @"Take a moment & listen to your tinnitus";
+        step.stepDuration = 3.0;
+
+//        ORKStepArrayAddStep(steps, step);
+    }
+
+//    {
+//        id answerFormat = [[ORKScaleAnswerFormat alloc] initWithMaximumValue:100 minimumValue:0 defaultValue:50 step:10 vertical:true];
+//        ORKQuestionStep *step = [ORKQuestionStep questionStepWithIdentifier:ORKTinnitusEstimatedVolumeBorg100Identifier title: @"Estimate how loud tinnitus currently is" question: @"Using the Borg 100 scale" answer: answerFormat];
+//        ORKStepArrayAddStep(steps, step);
+//    }
+//
+    {
+        ORKTinnitusStep *step = [[ORKTinnitusStep alloc] initWithIdentifier: ORKTinnitusLoudnessMatchingIdentifier];
+        step.title = @"Tinnitus Tester";
+        step.stepDuration = 0;
+        ORKStepArrayAddStep(steps, step);
+    }
+
+//    {
+//        id step = [[ORKTinnitusStep alloc] initWithIdentifier: ORKTinnitusFrequencyMatchingIdentifier];
+//        ORKStepArrayAddStep(steps, step);
+//    }
+//
+//    {
+//        id step = [[ORKTinnitusStep alloc] initWithIdentifier: ORKTinnitusMinimumMaskingLevelIdentifier];
+//        ORKStepArrayAddStep(steps, step);
+//    }
+
+    if (!(options & ORKPredefinedTaskOptionExcludeConclusion)) {
+        ORKInstructionStep *step = [self makeCompletionStep];
+
+        ORKStepArrayAddStep(steps, step);
+    }
+
+    ORKOrderedTask *task = [[ORKOrderedTask alloc] initWithIdentifier:identifier steps:steps];
+
     return task;
 }
 

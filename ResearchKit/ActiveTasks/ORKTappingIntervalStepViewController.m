@@ -168,7 +168,6 @@
         _hitButtonCount++;
     }
     // Update label
-    [_tappingContentView setTapCount:_hitButtonCount];
     if (UIAccessibilityIsVoiceOverRunning()) {
         static NSNumberFormatter *TapCountAnnouncementFormatter = nil;
         static dispatch_once_t onceToken;
@@ -232,37 +231,34 @@
 }
 
 - (void)countDownTimerFired:(ORKActiveStepTimer *)timer finished:(BOOL)finished {
-    CGFloat progress = finished ? 1 : (timer.runtime / timer.duration);
-    [_tappingContentView setProgress:progress animated:YES];
     [super countDownTimerFired:timer finished:finished];
 }
 
 - (void)start {
     [super start];
     self.skipButtonItem = nil;
-    [_tappingContentView setProgress:0.001 animated:NO];
 }
 
 #pragma mark buttonAction
 
 - (IBAction)buttonPressed:(id)button forEvent:(UIEvent *)event {
     
-    if (UIAccessibilityIsVoiceOverRunning()) {
-        if (!_tappingContentView.isAccessibilityElement) {
-            // Make the buttons directly tappable with VoiceOver
-            _tappingContentView.isAccessibilityElement = YES;
-            _tappingContentView.accessibilityLabel = ORKLocalizedString(@"AX_TAP_BUTTON_DIRECT_TOUCH_AREA", nil);
-            _tappingContentView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction;
-            // Ensure that VoiceOver is aware of the direct touch area so that the first tap gets registered
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, _tappingContentView);
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                // Work around an issue in VoiceOver where announcements don't get spoken if they happen during a button activation
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, ORKLocalizedString(@"AX_TAP_BUTTON_DIRECT_TOUCH_ANNOUNCEMENT", nil));
-            });
-            // Don't actually handle this as a tap yet.
-            return;
-        }
-    }
+//    if (UIAccessibilityIsVoiceOverRunning()) {
+//        if (!_tappingContentView.isAccessibilityElement) {
+//            // Make the buttons directly tappable with VoiceOver
+//            _tappingContentView.isAccessibilityElement = YES;
+//            _tappingContentView.accessibilityLabel = ORKLocalizedString(@"AX_TAP_BUTTON_DIRECT_TOUCH_AREA", nil);
+//            _tappingContentView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction;
+//            // Ensure that VoiceOver is aware of the direct touch area so that the first tap gets registered
+//            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, _tappingContentView);
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                // Work around an issue in VoiceOver where announcements don't get spoken if they happen during a button activation
+//                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, ORKLocalizedString(@"AX_TAP_BUTTON_DIRECT_TOUCH_ANNOUNCEMENT", nil));
+//            });
+//            // Don't actually handle this as a tap yet.
+//            return;
+//        }
+//    }
     
     if (self.samples == nil) {
         // Start timer on first touch event on button

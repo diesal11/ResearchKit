@@ -500,6 +500,16 @@ NS_ASSUME_NONNULL_BEGIN
                                   intendedUseDescription:(nullable NSString *)intendedUseDescription
                                                  options:(ORKPredefinedTaskOption)options;
 
+/**
+ Returns a predefined task that measures Tinnitus Frequency, Volume & Minimum Masking level.
+
+ @param identifier              The task identifier to use for this task, appropriate to the study.
+ @param options                 Options that affect the features of the predefined task.
+
+ @return An Tinnitus Measurement task that can be presented with an `ORKTaskViewController` object.
+ */
++ (ORKOrderedTask *)tinnitusTaskWithIdentifier:(NSString *)identifier
+                                       options:(ORKPredefinedTaskOption)options;
 
 /**
  Returns a predefined task that tests the participant's reaction time.

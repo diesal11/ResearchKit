@@ -120,4 +120,20 @@
    return userInterfaceStyle == UIUserInterfaceStyleDark ? [self imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] : [self imageWithRenderingMode:UIImageRenderingModeAutomatic];
 }
 
+- (UIImage *)ork_imageWithScale:(CGFloat)scale
+{
+    CGSize scaledSize = CGSizeApplyAffineTransform([self size], CGAffineTransformMakeScale(scale, scale));
+    return [self ork_imageWithSize: scaledSize];
+}
+
+- (UIImage *)ork_imageWithSize:(CGSize)newSize
+{
+    UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:newSize];
+    UIImage *image = [renderer imageWithActions:^(UIGraphicsImageRendererContext*_Nonnull myContext) {
+        [self drawInRect:(CGRect) {.origin = CGPointZero, .size = newSize}];
+    }];
+    return [image imageWithRenderingMode:self.renderingMode];
+}
+
+
 @end

@@ -398,6 +398,10 @@ static NSString *scrollContentChangedNotification = @"scrollContentChanged";
     [self placeNavigationContainerView];
 }
 
+- (void)setDelaysContentTouches: (BOOL)value {
+    _scrollView.delaysContentTouches = value;
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self updateScrollContentConstraints];

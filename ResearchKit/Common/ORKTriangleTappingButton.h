@@ -1,5 +1,6 @@
+
 /*
- Copyright (c) 2015, Apple Inc. All rights reserved.
+ Copyright (c) 2024, Apple Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -28,29 +29,17 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if TARGET_OS_IOS
-
-
 @import UIKit;
-#import <ResearchKit/ORKCustomStepView_Internal.h>
+#import <ResearchKit/ORKBorderedButton.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ORKRoundTappingButton;
+ORK_CLASS_AVAILABLE
+@interface ORKTriangleTappingButton : ORKTextButton
 
-@interface ORKTappingContentView : ORKActiveStepCustomView
-
-@property (nonatomic, assign) BOOL hasSkipButton;
-
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton1;
-
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton2;
-
-@property (nonatomic, assign) NSInteger lastTappedButton;
+@property (nonatomic, assign) bool pointsUpwards;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif

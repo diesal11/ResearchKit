@@ -90,6 +90,7 @@
 #import <ResearchKit/ORKTouchAbilityScrollStep.h>
 #import <ResearchKit/ORKTouchAbilityPinchStep.h>
 #import <ResearchKit/ORKTouchAbilityRotationStep.h>
+//#import <ResearchKit/ORKTinnitusStep.h>
 
 #import <ResearchKit/ORKTaskViewController_Private.h>
 #import <ResearchKit/ORKFormStepViewController_Private.h>
@@ -114,6 +115,7 @@
 #import <ResearchKit/ORKSpatialSpanMemoryStepViewController.h>
 #import <ResearchKit/ORKStroopStepViewController.h>
 #import <ResearchKit/ORKTappingIntervalStepViewController.h>
+//#import <ResearchKit/ORKTinn.h>
 #import <ResearchKit/ORKToneAudiometryStepViewController.h>
 #import <ResearchKit/ORKTimedWalkStepViewController.h>
 #import <ResearchKit/ORKWalkingTaskStepViewController.h>
@@ -137,6 +139,7 @@
 #import <ResearchKit/ORKStepView_Private.h>
 #import <ResearchKit/ORKCustomStepView.h>
 #import <ResearchKit/ORKTappingContentView.h>
+#import <ResearchKit/ORKTinnitusStepContentView.h>
 #import <ResearchKit/ORKVerticalContainerView.h>
 #import <ResearchKit/ORKVerticalContainerView_Internal.h>
 #import <ResearchKit/ORKStepContainerView.h>
@@ -156,6 +159,8 @@
 #import <ResearchKit/ORKAudioMeteringView.h>
 #import <ResearchKit/ORKAudioGraphView.h>
 #import <ResearchKit/ORKInstructionStepContainerView.h>
+
+#import <ResearchKit/ORKTinnitusStepContentView.h>
 
 #import <ResearchKit/ORKLabel.h>
 #import <ResearchKit/ORKUnitLabel.h>

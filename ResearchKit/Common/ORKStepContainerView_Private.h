@@ -47,6 +47,7 @@ static const CGFloat ImageViewMaxHeightAndWidth = 175.0;
 @property (nonatomic, assign) BOOL customContentFillsAvailableSpace;
 @property (nonatomic) BOOL scrollEnabled;
 @property (nonatomic) BOOL pinNavigationContainer;
+@property (nonatomic) BOOL delaysContentTouches;
 @property (nonatomic) UIEdgeInsets scrollViewInset;
 
 - (void)setCustomContentView:(UIView *)customContentView withTopPadding:(CGFloat)topPadding;

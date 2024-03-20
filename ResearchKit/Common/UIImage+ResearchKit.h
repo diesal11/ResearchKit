@@ -37,4 +37,6 @@
 - (UIImage *)ork_flippedImage:(UIImageOrientation)orientation;
 - (UIImage *)ork_imageWithRenderingModeForUserInterfaceStyle:(UIUserInterfaceStyle)userInterfaceStyle API_AVAILABLE(ios(12.0));
 
+- (UIImage *)ork_imageWithScale:(CGFloat)scale;
+- (UIImage *)ork_imageWithSize:(CGSize)newSize;
 @end

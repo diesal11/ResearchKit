@@ -176,8 +176,8 @@ func resultTableViewProviderForResult(_ result: ORKResult?, delegate: ResultProv
     case is ORKWebViewStepResult:
         providerType = WebViewStepResultTableViewProvider.self
         
-    case is ORKLandoltCResult:
-        providerType = LandoltCStepResultProvider.self
+//    case is ORKLandoltCResult:
+//        providerType = LandoltCStepResultProvider.self
 
     case is ORKEnvironmentSPLMeterResult:
         providerType = SPLMeterStepResultTableViewProvider.self
@@ -1389,20 +1389,21 @@ class LandoltCStepResultProvider: ResultTableViewProvider {
     // MARK: ResultTableViewProvider
     
     override func resultRowsForSection(_ section: Int) -> [ResultRow] {
-        let landoltCResult = result as! ORKLandoltCResult
-
-        let rows = super.resultRowsForSection(section)
-        
-        if section == 0 {
-            return rows + [
-                ResultRow(text: "outcome", detail: landoltCResult.outcome),
-                ResultRow(text: "letterAngle", detail: landoltCResult.letterAngle),
-                ResultRow(text: "sliderAngle", detail: landoltCResult.sliderAngle),
-                ResultRow(text: "score", detail: landoltCResult.score)
-            ]
-        }
-        
-        return rows
+//        let landoltCResult = result as! ORKLandoltCResult
+//
+//        let rows = super.resultRowsForSection(section)
+//        
+//        if section == 0 {
+//            return rows + [
+//                ResultRow(text: "outcome", detail: landoltCResult.outcome),
+//                ResultRow(text: "letterAngle", detail: landoltCResult.letterAngle),
+//                ResultRow(text: "sliderAngle", detail: landoltCResult.sliderAngle),
+//                ResultRow(text: "score", detail: landoltCResult.score)
+//            ]
+//        }
+//        
+//        return rows
+        return []
     }
 }
 

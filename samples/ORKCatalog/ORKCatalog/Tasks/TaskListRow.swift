@@ -109,6 +109,7 @@ enum TaskListRow: Int, CustomStringConvertible {
     case timedWalkWithTurnAround
     case toneAudiometry
     case dBHLToneAudiometry
+    case tinnitusTest
     case splMeter
     case towerOfHanoi
     case tremorTest
@@ -143,6 +144,7 @@ enum TaskListRow: Int, CustomStringConvertible {
         let defaultSections = [
             TaskListRowSection(title: "Surveys", rows:
                 [
+                    .tinnitusTest,
                     .form,
                     .groupedForm,
                     .survey
@@ -204,6 +206,7 @@ enum TaskListRow: Int, CustomStringConvertible {
                     .timedWalkWithTurnAround,
                     .toneAudiometry,
                     .dBHLToneAudiometry,
+                    .tinnitusTest,
                     .splMeter,
                     .towerOfHanoi,
                     .tremorTest,
@@ -384,7 +387,10 @@ enum TaskListRow: Int, CustomStringConvertible {
             
         case .dBHLToneAudiometry:
             return NSLocalizedString("dBHL Tone Audiometry", comment: "")
-            
+
+        case .tinnitusTest:
+            return NSLocalizedString("Tinnitus Test", comment: "")
+
         case .splMeter:
             return NSLocalizedString("Environment SPL Meter", comment: "")
             
@@ -620,6 +626,7 @@ enum TaskListRow: Int, CustomStringConvertible {
         case timedWalkWithTurnAroundTask
         case toneAudiometryTask
         case dBHLToneAudiometryTask
+        case tinnitusTest
         case splMeterTask
         case splMeterStep
         case towerOfHanoi
@@ -804,7 +811,10 @@ enum TaskListRow: Int, CustomStringConvertible {
             
         case .dBHLToneAudiometry:
             return dBHLToneAudiometryTask
-            
+
+        case .tinnitusTest:
+            return tinnitusTask
+
         case .splMeter:
             return splMeterTask
             
@@ -2052,7 +2062,11 @@ enum TaskListRow: Int, CustomStringConvertible {
     private var toneAudiometryTask: ORKTask {
         return ORKOrderedTask.toneAudiometryTask(withIdentifier: String(describing: Identifier.toneAudiometryTask), intendedUseDescription: exampleDescription, speechInstruction: nil, shortSpeechInstruction: nil, toneDuration: 20, options: [])
     }
-    
+
+    private var tinnitusTask: ORKTask {
+        return ORKOrderedTask.tinnitusTask(withIdentifier: String(describing: Identifier.tinnitusTest), options: [])
+    }
+
     /// This task presents the dBHL Tone Audiometry pre-defined active task.
     private var dBHLToneAudiometryTask: ORKTask {
         return ORKOrderedTask.dBHLToneAudiometryTask(withIdentifier: String(describing: Identifier.dBHLToneAudiometryTask), intendedUseDescription: nil, options: [])

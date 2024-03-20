@@ -64,6 +64,7 @@
 #import <ResearchKit/ORKSecondaryTaskStep.h>
 #import <ResearchKit/ORKRequestPermissionsStep.h>
 #import <ResearchKit/ORK3DModelStep.h>
+//#import <ResearchKit/ORKTinnitusStep.h>
 
 
 #import <ResearchKit/ORKTask.h>
@@ -163,5 +164,3 @@
 
 #import <ResearchKit/ORKEarlyTerminationConfiguration.h>
 #import <ResearchKit/ORKBundleAsset.h>
-
-

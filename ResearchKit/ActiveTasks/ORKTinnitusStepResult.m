@@ -31,26 +31,52 @@
 #if TARGET_OS_IOS
 
 
-@import UIKit;
-#import <ResearchKit/ORKCustomStepView_Internal.h>
+#import "ORKTinnitusStepResult.h"
 
+#import "ORKResult_Private.h"
+#import "ORKHelpers_Internal.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation ORKTinnitusStepResult
 
-@class ORKRoundTappingButton;
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
+//    ORK_ENCODE_ENUM(aCoder, tinnitusEar);
+}
 
-@interface ORKTappingContentView : ORKActiveStepCustomView
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+//        ORK_DECODE_ENUM(aDecoder, tinnitusEar);
+    }
+    return self;
+}
 
-@property (nonatomic, assign) BOOL hasSkipButton;
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
 
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton1;
+- (BOOL)isEqual:(id)object {
+    if ([self class] != [object class]) {
+        return NO;
+    }
 
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton2;
+    __typeof(self) castObject = object;
+//    return (self.tinnitusEar == castObject.tinnitusEar);
+}
 
-@property (nonatomic, assign) NSInteger lastTappedButton;
+- (instancetype)copyWithZone:(NSZone *)zone {
+    ORKTinnitusStepResult *result = [super copyWithZone:zone];
+//    result.tinnitusEar = self.tinnitusEar;
+    return result;
+}
+
+- (NSString *)description {
+//    return [NSString stringWithFormat:@"<%@: %p; ear: %@; ", self.class.description, self, @(self.tinnitusEar)];
+    return @"";
+}
 
 @end
 
-NS_ASSUME_NONNULL_END
+
 
 #endif

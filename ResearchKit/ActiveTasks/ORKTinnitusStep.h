@@ -31,23 +31,23 @@
 #if TARGET_OS_IOS
 
 
-@import UIKit;
-#import <ResearchKit/ORKCustomStepView_Internal.h>
-
+@import Foundation;
+#import <ResearchKit/ORKDefines.h>
+#import <ResearchKit/ORKActiveStep.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ORKRoundTappingButton;
+ORK_CLASS_AVAILABLE
+@interface ORKTinnitusStep : ORKActiveStep
 
-@interface ORKTappingContentView : ORKActiveStepCustomView
+- (instancetype)initWithIdentifier:(NSString *)identifier measurement:(ORKTinnitusStepMeasurement) measurementType;
+- (NSString*)stepDescription;
 
-@property (nonatomic, assign) BOOL hasSkipButton;
+@property (nonatomic, assign) ORKTinnitusStepMeasurement measurementType;
 
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton1;
+@property (nonatomic, assign) ORKTinnitusSoundIdentifier tinnitusSoundType;
 
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton2;
-
-@property (nonatomic, assign) NSInteger lastTappedButton;
+@property (nonatomic, assign) double startingVolume;
 
 @end
 

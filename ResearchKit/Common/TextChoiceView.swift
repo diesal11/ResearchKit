@@ -174,8 +174,10 @@ struct TextChoiceView: View {
                 VStack {
                     Spacer()
 
-                    Image(uiImage: image).resizable().aspectRatio(contentMode: .fit)
-                    
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+
                     Spacer()
                     
                     Text(text)

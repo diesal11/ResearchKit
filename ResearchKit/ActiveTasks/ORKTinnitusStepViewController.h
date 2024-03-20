@@ -32,22 +32,14 @@
 
 
 @import UIKit;
-#import <ResearchKit/ORKCustomStepView_Internal.h>
+#import <ResearchKit/ORKDefines.h>
+#import <ResearchKit/ORKActiveStepViewController.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ORKRoundTappingButton;
-
-@interface ORKTappingContentView : ORKActiveStepCustomView
-
-@property (nonatomic, assign) BOOL hasSkipButton;
-
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton1;
-
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton2;
-
-@property (nonatomic, assign) NSInteger lastTappedButton;
+ORK_CLASS_AVAILABLE
+@interface ORKTinnitusStepViewController : ORKActiveStepViewController
 
 @end
 

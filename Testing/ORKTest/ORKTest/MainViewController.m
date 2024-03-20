@@ -62,6 +62,7 @@ NSArray<NSDictionary<NSString *, NSArray<NSString *> *> *> *TestButtonTable()
                         @"PSAT",
                         @"Reaction Time",
                         @"Stroop",
+                        @"Tinnitus Tester",
                         @"Timed Walk",
                         @"Tone Audiometry",
                         @"Tower Of Hanoi",

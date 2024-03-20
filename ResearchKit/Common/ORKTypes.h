@@ -233,6 +233,42 @@ typedef NS_ENUM(NSInteger, ORKBodySagittal) {
     ORKBodySagittalRight
 } ORK_ENUM_AVAILABLE;
 
+/**
+ Ear side constants.
+ */
+typedef NS_ENUM(NSInteger, ORKEarSide) {
+    /// The left Ear.
+    ORKEarSideLeft = 1 << 1,
+
+    /// The right Ear.
+    ORKEarSideRight = 1 << 2,
+
+    /// Both Ears.
+    ORKEarSideBoth = ORKEarSideLeft | ORKEarSideRight
+} ORK_ENUM_AVAILABLE;
+
+/**
+ * Tinnitus sound characteristic constants.
+ */
+typedef NS_ENUM(NSInteger, ORKTinnitusSoundIdentifier) {
+    /// Tinntus is perceived as a single tone
+    ORKTinnitusSoundIdentifierTonal,
+
+    /// Tinntus is perceived as a small range of tones (usually 3-5 individual tones around a central frequency)
+    ORKTinnitusSoundIdentifierRinging,
+
+    /// Tinntus is perceived as a hissing sound.
+    ORKTinnitusSoundIdentifierHissing
+} ORK_ENUM_AVAILABLE;
+
+/**
+ * Value to identify the type of Tinnitus measurement performed or to be presented
+ */
+typedef NS_ENUM(NSInteger, ORKTinnitusStepMeasurement) {
+    ORKTinnitusStepMeasurementLoudness,
+    ORKTinnitusStepMeasurementFrequency,
+    ORKTinnitusStepMeasurementMinMaskingLevel,
+} ORK_ENUM_AVAILABLE;
 
 /**
  Values that identify the left or right limb to be used in an active task.

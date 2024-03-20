@@ -31,26 +31,42 @@
 #if TARGET_OS_IOS
 
 
-@import UIKit;
-#import <ResearchKit/ORKCustomStepView_Internal.h>
+#import "ORKTinnitusStep.h"
+#import "ORKTinnitusStepViewController.h"
 
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation ORKTinnitusStep
 
-@class ORKRoundTappingButton;
++ (Class)stepViewControllerClass {
+    return [ORKTinnitusStepViewController class];
+}
 
-@interface ORKTappingContentView : ORKActiveStepCustomView
+- (instancetype)initWithIdentifier:(nonnull NSString *)identifier measurement:(ORKTinnitusStepMeasurement)measurementType {
+    self = [super initWithIdentifier:identifier];
+    if (self) {
+        self.shouldShowDefaultTimer = NO;
+        self.optional = NO; // default to *not* optional
+        self.measurementType = measurementType;
+    }
+    return self;
+}
 
-@property (nonatomic, assign) BOOL hasSkipButton;
+- (NSString*)stepDescription {
+    ORKTinnitusStepMeasurement type = self.measurementType;
+    switch (type) {
+        case ORKTinnitusStepMeasurementLoudness:
+            return @"Use the buttons below to adjust the volume of the tone, until it matches your Tinnitus";
+        case ORKTinnitusStepMeasurementFrequency:
+            return @"Use the buttons below to adjust the pitch of the tone, until it matches your Tinnitus";
+        case ORKTinnitusStepMeasurementMinMaskingLevel:
+            return @"Use the buttons below to adjust the volume of the sound, until it just masks your Tinnitus";
+        default:
+            break;
+    }
+}
 
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton1;
 
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton2;
-
-@property (nonatomic, assign) NSInteger lastTappedButton;
 
 @end
-
-NS_ASSUME_NONNULL_END
 
 #endif
